@@ -3,7 +3,6 @@ $( document ).ready(function() {
   let  itemsRaw = [];
   
   $.getJSON('/api/books', function(data) {
-    //let  items = [];
     itemsRaw = data;
     $.each(data, function(i, val) {
       items.push('<li class="bookItem" id="' + i + '">' + val.title + ' - ' + val.commentcount + ' comments</li>');
@@ -38,7 +37,6 @@ $( document ).ready(function() {
       url: '/api/books/'+this.id,
       type: 'delete',
       success: function(data) {
-        //update list
         $('#detailComments').html('<p style="color: red;">'+data+'<p><p>Refresh the page</p>');
       }
     });
@@ -52,7 +50,7 @@ $( document ).ready(function() {
       dataType: 'json',
       data: $('#newCommentForm').serialize(),
       success: function(data) {
-        comments.unshift(newComment); //adds new comment to top of list
+        comments.unshift(newComment);
         $('#detailComments').html(comments.join(''));
       }
     });
@@ -65,7 +63,6 @@ $( document ).ready(function() {
       dataType: 'json',
       data: $('#newBookForm').serialize(),
       success: function(data) {
-        //update list
       }
     });
   });
@@ -77,7 +74,6 @@ $( document ).ready(function() {
       dataType: 'json',
       data: $('#newBookForm').serialize(),
       success: function(data) {
-        //update list
       }
     });
   }); 
